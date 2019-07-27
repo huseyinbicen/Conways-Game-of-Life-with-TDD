@@ -53,12 +53,18 @@ public class conwaysGameOfLife
         return (isAlive && (numberOfNeighbors == 2 || numberOfNeighbors == 3)) || (!isAlive && numberOfNeighbors == 3);
     }
     
-    private int numberOfNeighbors(boolean[][] board, int row, int col) {return 0;}
-    private boolean inBound(boolean[][] board, int row, int col){return false;}
+    public int numberOfNeighbors(boolean[][] board, int row, int col) {
+        return 0;
+    }
+    
+    
+    public boolean inBound(boolean[][] board, int row, int col){
+        return row >= 0 && row < board.length && col >= 0 && col < board[0].length;
+    }
     
     
     
-    public boolean isTrue4ReadFile(Scanner inputfile)
+    private boolean isTrue4ReadFile(Scanner inputfile)
     {
         return inputfile.hasNextInt() && inputfile.nextInt() != 0;
     }
