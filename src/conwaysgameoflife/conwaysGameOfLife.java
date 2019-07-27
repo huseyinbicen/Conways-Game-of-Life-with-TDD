@@ -64,10 +64,7 @@ public class conwaysGameOfLife
         {
             for(int j = col - 1; j <= col + 1; j++)
             {
-                if( inBound(board, i, j) && board[i][j] )
-                {
-                	deadOrAlive++;
-                }
+                deadOrAlive += (inBound(board, i, j) && board[i][j])?1:0;
             }
         }
 
@@ -90,6 +87,7 @@ public class conwaysGameOfLife
     {
         return rulesOfLife(numberOfNeighbors, isAlive);
     }
+    
     
     public static void main(String[] args) throws FileNotFoundException
     {
