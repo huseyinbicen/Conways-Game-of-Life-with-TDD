@@ -75,8 +75,13 @@ public class conwaysGameOfLifeTest
      * Test of nextGeneration method, of class conwaysGameOfLife.
      */
     @Test
-    public void testNextGeneration()
+    public void testNextGeneration() throws FileNotFoundException
     {
+        boolean[][] board = new conwaysGameOfLife().ReadFile();
+        boolean[][] arr = new conwaysGameOfLife().nextGeneration(board);
+        new conwaysGameOfLife().printBoard(arr);
+        
+        //Mind Error
     }
 
     /**

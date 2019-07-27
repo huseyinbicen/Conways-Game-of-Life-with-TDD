@@ -45,8 +45,20 @@ public class conwaysGameOfLife
         System.out.println(cell);
     }
     
-    public boolean[][] nextGeneration(){
-        return tempBoard;
+    public boolean[][] nextGeneration(boolean[][] board){
+        boolean[][] nextGenerationOfBoard = new boolean[board.length][board[0].length];
+    	int numberOfNeig;
+        
+    	for (int i = 0; i < board.length; i++)
+    	{
+            for (int j = 0; j < board[0].length; j++)
+            {
+                numberOfNeig = numberOfNeighbors(board, i, j);
+                nextGenerationOfBoard[i][j] = isTrue4NextGeneration(numberOfNeig,board[i][j]);
+    		
+            }
+    	}
+    	return nextGenerationOfBoard;
     }
     
     public boolean rulesOfLife(int numberOfNeighbors, boolean isAlive) {
@@ -54,7 +66,19 @@ public class conwaysGameOfLife
     }
     
     public int numberOfNeighbors(boolean[][] board, int row, int col) {
-        return 0;
+        int deadOrAlive = board[row][col] ? -1 : 0;
+        for(int i = row - 1; i <= row + 1; i++)
+        {
+            for(int j = col - 1; j <= col + 1; j++)
+            {
+                if( inBound(board, i, j) && board[i][j] )
+                {
+                	deadOrAlive++;
+                }
+            }
+        }
+
+        return deadOrAlive;
     }
     
     
@@ -67,6 +91,11 @@ public class conwaysGameOfLife
     private boolean isTrue4ReadFile(Scanner inputfile)
     {
         return inputfile.hasNextInt() && inputfile.nextInt() != 0;
+    }
+    
+    private boolean isTrue4NextGeneration(int numberOfNeighbors, boolean isAlive)
+    {
+        return rulesOfLife(numberOfNeighbors, isAlive);
     }
     
 }
