@@ -7,6 +7,7 @@ package conwaysgameoflife;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -42,12 +43,12 @@ public class conwaysGameOfLifeTest
             	}
             }
         }
+        conwaysGameOfLife gof = new conwaysGameOfLife();
         
-        boolean[][] expected = new conwaysGameOfLife().ReadFile();
+        boolean[][] expected = gof.ReadFile();
         
-        assertArrayEquals(expected, arr);
+        assertTrue(Arrays.equals(expected,arr));
         fail("The File is not found");
-
     }
 
     /**
