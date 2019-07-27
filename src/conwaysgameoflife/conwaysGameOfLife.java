@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package conwaysgameoflife;
 
 import java.io.File;
@@ -15,9 +10,7 @@ import java.util.Scanner;
  */
 public class conwaysGameOfLife
 {
-    public boolean[][] tempBoard = new boolean[1][1];
-    
-    public boolean[][] ReadFile() throws FileNotFoundException{
+    public static boolean[][] ReadFile() throws FileNotFoundException{
         Scanner inputfile;
         boolean[][] arr = new boolean[10][10];
         File file = new File("board.txt");
@@ -31,7 +24,7 @@ public class conwaysGameOfLife
         }
         return arr;
     }
-    public void printBoard(boolean[][] board)
+    public static void printBoard(boolean[][] board)
     {
         String cell = "";
         for(boolean[] i : board){
@@ -45,7 +38,7 @@ public class conwaysGameOfLife
         System.out.println(cell);
     }
     
-    public boolean[][] nextGeneration(boolean[][] board){
+    public static boolean[][] nextGeneration(boolean[][] board){
         boolean[][] nextGenerationOfBoard = new boolean[board.length][board[0].length];
     	int numberOfNeig;
         
@@ -61,11 +54,11 @@ public class conwaysGameOfLife
     	return nextGenerationOfBoard;
     }
     
-    public boolean rulesOfLife(int numberOfNeighbors, boolean isAlive) {
+    public static boolean rulesOfLife(int numberOfNeighbors, boolean isAlive) {
         return (isAlive && (numberOfNeighbors == 2 || numberOfNeighbors == 3)) || (!isAlive && numberOfNeighbors == 3);
     }
     
-    public int numberOfNeighbors(boolean[][] board, int row, int col) {
+    public static int numberOfNeighbors(boolean[][] board, int row, int col) {
         int deadOrAlive = board[row][col] ? -1 : 0;
         for(int i = row - 1; i <= row + 1; i++)
         {
@@ -82,20 +75,31 @@ public class conwaysGameOfLife
     }
     
     
-    public boolean inBound(boolean[][] board, int row, int col){
+    public static boolean inBound(boolean[][] board, int row, int col){
         return row >= 0 && row < board.length && col >= 0 && col < board[0].length;
     }
     
     
     
-    private boolean isTrue4ReadFile(Scanner inputfile)
+    private static boolean isTrue4ReadFile(Scanner inputfile)
     {
         return inputfile.hasNextInt() && inputfile.nextInt() != 0;
     }
     
-    private boolean isTrue4NextGeneration(int numberOfNeighbors, boolean isAlive)
+    private static boolean isTrue4NextGeneration(int numberOfNeighbors, boolean isAlive)
     {
         return rulesOfLife(numberOfNeighbors, isAlive);
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException
+    {
+        boolean[][] board = ReadFile();
+        printBoard(board);
+        for (int i = 0; i < 10; i++)
+        {
+        	board = nextGeneration(board);
+        	printBoard(board);
+        }
     }
     
 }
