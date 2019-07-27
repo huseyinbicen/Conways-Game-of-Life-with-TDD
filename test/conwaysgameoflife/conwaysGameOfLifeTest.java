@@ -47,7 +47,7 @@ public class conwaysGameOfLifeTest
         
         boolean[][] expected = gof.ReadFile();
         
-        assertTrue(Arrays.equals(expected,arr));
+        assertTrue(Arrays.equals(expected, arr));
         fail("The File is not found");
     }
 
@@ -55,8 +55,20 @@ public class conwaysGameOfLifeTest
      * Test of printBoard method, of class conwaysGameOfLife.
      */
     @Test
-    public void testPrintBoard()
+    public void testPrintBoard() throws FileNotFoundException
     {
+        boolean[][] arr = new conwaysGameOfLife().ReadFile();
+        String cell = "";
+        for(boolean[] i : arr){
+            for(boolean val : i)
+                if(val)
+                    cell += "1 ";
+                else
+                    cell += "0 ";
+            cell += "\n";
+        }
+        System.out.println(cell);
+        assertNull(cell);
     }
 
     /**
