@@ -85,6 +85,10 @@ public class conwaysGameOfLifeTest
     @Test
     public void testRulesOfLife()
     {
+        boolean think = new conwaysGameOfLife().rulesOfLife(4, true); //1,4-> test failed, 2,3 Success
+        boolean expected = false;
+        
+        assertEquals(expected,think);
     }
     
 }
