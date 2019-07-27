@@ -91,9 +91,10 @@ public class conwaysGameOfLife
     
     public static void main(String[] args) throws FileNotFoundException
     {
+        int genaration = 100;
         boolean[][] board = ReadFile();
         printBoard(board);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < genaration; i++)
         {
         	board = nextGeneration(board);
         	printBoard(board);
