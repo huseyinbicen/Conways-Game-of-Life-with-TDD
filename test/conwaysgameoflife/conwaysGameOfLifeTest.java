@@ -5,6 +5,9 @@
  */
 package conwaysgameoflife;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,8 +26,28 @@ public class conwaysGameOfLifeTest
      * Test of ReadFile method, of class conwaysGameOfLife.
      */
     @Test
-    public void testReadFile()
+    public void testReadFile() throws FileNotFoundException
     {
+        Scanner inputfile;
+        boolean[][] arr = new boolean[10][10];
+        File file = new File("board.txt");
+	inputfile = new Scanner(file);
+        for(int i = 0; i < arr.length; i++)
+        {
+            for(int j = 0; j < arr[0].length; j++)
+            {
+            	if (inputfile.hasNextInt() && inputfile.nextInt() != 0)    
+            	{
+            		arr[i][j] = true;
+            	}
+            }
+        }
+        
+        boolean[][] expected = new conwaysGameOfLife().ReadFile();
+        
+        assertArrayEquals(expected, arr);
+        fail("The File is not found");
+
     }
 
     /**
